@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'countdown.dart';
 import 'makecarddeck.dart';
 import 'gamesetpage.dart';
+import 'buttontranstion.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,6 +37,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const readyPage();
+    return SetPage();
   }
 }

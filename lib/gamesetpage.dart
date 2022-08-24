@@ -1,4 +1,6 @@
+import 'package:cardgame/readypage.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 class SetPage extends StatefulWidget {
   const SetPage({Key? key}) : super(key: key);
@@ -8,84 +10,74 @@ class SetPage extends StatefulWidget {
 }
 
 class _SetPageState extends State<SetPage> {
+  late Timer _timer;
+  late Timer _a;
+  String imagePath = "assets/startbutton.png";
+
   int cardcount = 15;
+  /*
+  _SetPageState() {
+    _timer = new Timer(const Duration(milliseconds: 5000), () {
+      setState(() {
+        while (true) {
+          imagePath = "assets/warningstart.png";
+          _a = new Timer(const Duration(milliseconds: 5000), () {
+            imagePath = "assets/startbutton.png";
+          });
+        }
+        ;
+      });
+    });
+  }*/
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(children: [
-      Container(
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-          image: AssetImage("assets/starthome.png"),
-          fit: BoxFit.cover,
-        )),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(
-          // left: 62,
-          top: 347,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              margin: EdgeInsets.zero,
-              padding: EdgeInsets.zero,
-              height: 61,
-              width: 61,
-              child: InkWell(
-                  onTap: () {
-                    minusCounter();
-                  },
-                  child: Image.asset('assets/minusbutton.png')),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: SizedBox(
-                  width: 89,
-                  height: 60,
-                  child: Center(
-                    child: Text(
-                      "$cardcount" "장",
-                      style: const TextStyle(
-                        fontSize: 40,
-                        height: 150 / 100,
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xffFFFFFF),
-                      ),
-                    ),
-                  )),
-            ),
-            Container(
-              margin: EdgeInsets.zero,
-              padding: EdgeInsets.zero,
-              height: 61,
-              width: 61,
-              child: InkWell(
-                  onTap: () {
-                    incrementCounter();
-                  },
-                  child: Image.asset('assets/addbutton.png')),
-            ),
-          ],
-        ),
-      ),
-      Center(
-        child: Padding(
-          padding: const EdgeInsets.only(
-            top: 200,
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+              image: AssetImage("assets/starthome.png"),
+              fit: BoxFit.cover,
+            )),
           ),
-          child: TextButton(
-              onPressed: () {},
-              child: const Text(
-                "게임 시작",
-                style: TextStyle(fontSize: 35, fontWeight: FontWeight.w700),
-              )),
-        ),
-      )
-    ]));
+          Align(
+            alignment: Alignment(0, 0.04434), // 정확하게 센터는 아니라서 계산 하고 넣은것.
+            child: Center(
+                child: Container(
+                    width: 310,
+                    height: 378,
+                    child: Image(
+                      image: AssetImage("assets/cardmove.gif"),
+                      fit: BoxFit.cover,
+                    ))),
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 709),
+              child: Container(
+                margin: EdgeInsets.zero,
+                padding: EdgeInsets.zero,
+                height: 68,
+                width: 340,
+                child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ReadyPage()));
+                    },
+                    child: Image.asset(imagePath)),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
+
+  // Do something
 
   void incrementCounter() {
     setState(() {

@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/scheduler.dart';
 import 'gamesetpage.dart';
 
-class readyPage extends StatefulWidget {
-  const readyPage({Key? key}) : super(key: key);
+class ReadyPage extends StatefulWidget {
+  const ReadyPage({Key? key}) : super(key: key);
 
   @override
-  State<readyPage> createState() => _readyPageState();
+  State<ReadyPage> createState() => _ReadyPageState();
 }
 
-class _readyPageState extends State<readyPage> {
+class _ReadyPageState extends State<ReadyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,10 +23,9 @@ class _readyPageState extends State<readyPage> {
           fit: BoxFit.cover,
         )),
       ),
-      
       Center(
         child: AnimatedTextKit(
-          pause: Duration(microseconds: 0),
+          pause: const Duration(microseconds: 0),
           totalRepeatCount: 1,
           animatedTexts: [
             ScaleAnimatedText(
